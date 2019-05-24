@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Page Partitions Variables</title>
+			<link href='../style/style_test.css' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="jquery-3.3.1.js"></script>
+
+		</head>
+
+<body>
+	<!----------------------------------- Menu -------------------------------->
+<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+				<div class="container">
+						<button class="navbar-toggler"
+						 id="nav-toggle-button"
+						  type="button"
+							 data-toggle="collapse"
+							  data-target="#navbarTogglerDemo03"
+								aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+  				<a class="navbar-brand" href="../../Accueil/index.html"><i class="fas fa-memory"></i> MMSim</a>
+
+  				<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    				<ul class="navbar-nav ml-auto mt-4 mt-lg-0">
+      					<li class="nav-item active">
+        					<a class="nav-link" href="../../Accueil/index.html">Accueil <span class="sr-only">(current)</span></a></li>
+      					<li class="nav-item active">
+        					<a class="nav-link" href="#explore">Concept </a></li>
+      					<li class="nav-item active">
+        					<a class="nav-link" href="#algo">Algorithme </a></li>
+						<li class="nav-item active">
+        					<a class="nav-link" href="#sim">Simulation </a></li>
+    				</ul>
+  				</div>
+				</div>
+			</nav>
+	<!----------------------------------- /End Menu -------------------------------->
+		<br><br><br><br>
+		<div class="container" id="explore">
+				<h1 id="title">Partitions variables, quel concept !</h1>
+			</div>
+
+			<div id="description_container">
+				<div class="container">
+					<p>L'espace mémoire est divisé en partitions. Chaque partition peut être allouée à un programme.Dans cette stratégie la mémoire est partitionnée dynamiquement selon la demande. Lorsqu'un processus se termine sa partition est récupérée pour être réutilisée (complètement ou partiellement) par d'autres processus.Le lancement des processus dans les partitions se fait selon différentes stratégies. Pour cela le gestionnaire de la mémoire doit garder trace des partitions occupées et /ou des partitions libres. On distingue les stratégies de placement suivantes: Best Fit, Next Fit, Worst Fit , Next Fit et Buddy System.</p>
+				</div>
+			</div>
+
+
+<!----------------------------------- Discription -------------------------------->
+	<div class="container" id ="container1">
+			<div class="container">
+				<h2>Best Fit</h2>
+			</div>
+
+			<div id="description_container">
+				<div class="container">
+					<h4 class="sub_title">De quoi s'agit-il ?</h4>
+					<p> Dans cette méthode , on alloue la plus petite partition dont la taille est au moins égale à celle du processus en attente. </p>
+				</div>
+			</div>
+
+	<!----------------------------------- /End Discription -------------------------------->
+			<div class="container" id="algo">
+				<h2 class="sub_title">Algorithme</h2>
+			</div>
+
+			<div class="container">
+				<div class="code-editor">
+			<span class="control"></span>
+			<span class="control"></span>
+			<span class="control"></span>
+			<pre class="line-numbers">
+				<code class="language-css">
+blockBestFit = this.head;
+
+		while ((blockBestFit.size < process.size) || (!blockBestFit.available)) { /*Recherche du premier bloc pouvant
+			blockBestFit = blockBestFit.next;                                           contenir le processus donné*/
+			if (blockBestFit == null) {return false};
+		};
+
+
+		block = blockBestFit.next;
+		while (block != null) {                                                  /*Recherche du meilleur bloc qui convient*/
+			if ((block.size >= process.size) && (block.available) && (block.size < blockBestFit.size)) {
+				blockBestFit = block;
+			};
+			block = block.next;
+		};
+
+		spaceLeftover = blockBestFit.size - (process.size);                     /*Calcul de l'espace restant aprés avoir allouer
+                                                                                          le bloc trouvé au processus*/
+
+		if (spaceLeftover > 0) {                                                /*Creation d'un nouveau bloc si necessaire*/
+			newBlock = new MemControlBlock(spaceLeftover);
+
+			nextBlock = blockBestFit.next;
+			if (nextBlock != null) {
+				nextBlock.prev = newBlock;
+				newBlock.next = nextBlock;
+			};
+
+			blockBestFit.next = newBlock;
+			newBlock.prev = blockBestFit;
+
+			blockBestFit.size = process.size;
+
+			newBlock.fromPartition = true;
+		};
+
+		blockBestFit.setProcess(process);
+		process.allocatedBlock = blockBestFit;
+		return true;
+}</code></pre>
+</div>
+			</div>
+
+			<br><br>
+		<div class="container" id="sim">
+				<h2 class="sub_title">Simulation</h2>
+			</div>
+	</div>
+	<div class="container" id="mainContainer" >
+		<div class="row">
+			<div  id="leftContainer" class="col-12 col-lg-6 col-sm-12">
+				<h2>Ajouter un processus</h2>
+				<form id="processForm">
+					<div class="input-group">
+						<input class="form-control" type="number" min="0" max="256" name="processSize" placeholder="Taille du processus" autocomplete="off" />
+					</div>
+					<div class="input-group">
+						<input class="form-control" type="number" min="0" max="256" name="processTime" placeholder="Duree du processus" autocomplete="off" />
+						<button type="submit" style="display:none;"/>
+					</div>
+					
+					<br><br>
+
+					<h2>Table de processus </h2>
+					<table class="table" id="processTable">
+						<tr>
+							<th> ID</th>
+							<th>Taille (K)</th>
+							<th>Temps restant (unité)</th>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<div id="logBoxContainer">
+						<div id="logBox">DEBUG LOG<br></div>
+					</div>
+			</div>
+
+			<div  id="rightContainer" class="col-12 col-lg-6 col-sm-12">
+				<div id="fileContainer" class="col-lg-3 col-sm-6 col-6">
+						<div id="file"></div>
+				</div>
+				<div id="memoryContainer" class="col-lg-3 col-sm-6 col-6">
+					<div id="memory"></div>
+					<script src="script_test.js"></script>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div class="">
+		<footer class="page-footer font-small">
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3">© 2019 Copyright:
+				<a href=""> MMSim.com</a>
+			</div>
+			<!-- Copyright -->
+		</footer>
+		<!-- Footer -->
+	</div>
+
+
+<script src="script_test.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

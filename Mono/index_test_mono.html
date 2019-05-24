@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Monoprogramation</title>
+			<link href='style_test_mono.css' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<!--<script src="jquery-3.3.1.js"></script>-->
+
+		</head>
+
+		<body>
+			<!----------------------------------- Menu -------------------------------->
+			<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+				<div class="container">
+					<button class="navbar-toggler" id="nav-toggle-button" type="button" data-toggle="collapse"
+					data-target="#navbarTogglerDemo03" aria-label="Toggle navigation">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="../Accueil/index.html"><i class="fas fa-memory"></i> MMSim</a>
+
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+						<ul class="navbar-nav ml-auto mt-4 mt-lg-0">
+							<li class="nav-item active">
+								<a class="nav-link" href="../Accueil/index.html">Accueil <span class="sr-only">(current)</span></a></li>
+							<li class="nav-item active">
+								<a class="nav-link" href="#explore">Concept </a></li>
+							<li class="nav-item active">
+								<a class="nav-link" href="#algo">Algorithme </a></li>
+							<li class="nav-item active">
+								<a class="nav-link" href="#sim">Simulation </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!----------------------------------- /End Menu -------------------------------->
+			<br><br><br><br>
+			<div class="container" id="explore">
+				<h1 id="title">Monoprogramation, quel concept !</h1>
+				<h1>Ordonnancement par file pour toute la mémoire</h1>
+			</div>
+
+			<div id="description_container">
+				<div class="container">
+					<h4 class="sub_title">Partition par file pour toute la mémoire, de quoi s'agit-il ?</h4>
+					<p>A la base, le rôle du plus simple gestionnaire de mémoire est d'exécuter un seul programme à la fois, en partageant la mémoire entre le programme et le système
+						d'exploitation. Quand le système est organisé de cette
+						manière, un seul processus peut s'exécuter à la fois. Dès que l'utilisateur tape une
+						commande, le système d'exploitation copie le programme demandé depuis le
+						disque vers la mémoire et l'exécute.</p>
+				</div>
+			</div>
+
+			<div class="container" id="algo">
+				<h2 class="sub_title">Algorithme</h2>
+			</div>
+
+			<div class="container">
+				<div class="code-editor">
+					<span class="control"></span>
+					<span class="control"></span>
+					<span class="control"></span>
+					<pre class="line-numbers">
+						<code class="language-css">
+							function Process(size, time) {
+								this.size = size;
+								this.timeLeft = time;
+								this.allocatedBlock = null;
+								this.id = processID;
+								
+							
+								processID += 1;
+							
+								this.isAllocated = function() {
+									return this.allocatedBlock != null;
+								};
+							
+								this.tick = function() {
+									this.timeLeft -=1;
+								};
+							};
+							
+							function MemControlBlock(size) {
+								this.size = size;
+								this.process = null;
+								this.available = true;
+							
+								
+								this.fromPartition = false; // Used to determine whether height of a MemControlBlock needs to be added
+							
+								this.setProcess = function(process) {
+									if (process == null) {
+										this.process = null;
+										this.available = true;
+									} else {
+										this.process = process;
+										this.available = false;
+									};
+								};
+							};
+							
+							// Simulates memory
+							function Heap() {
+								
+								this.head = null;
+								this.size = 0;
+							
+								this.compare = function(process) {
+									
+									blockBestFit = this.head;
+									
+									if (blockBestFit.available){
+										blockBestFit.setProcess(process);
+										process.allocatedBlock = blockBestFit;
+										return true;
+									}
+									return false;
+								
+								}
+							
+								this.deallocateProcess = function(process) {
+									process.allocatedBlock.setProcess(null);
+									process.allocatedBlock = null;
+								};
+							
+								this.add = function(block) {
+									if (this.head == null) {
+										this.head = block;
+									} else {
+										block.next = this.head;
+										this.head = block;
+									};
+							
+									this.size += block.size;
+								}
+							
+								this.toString = function() {
+									string = "[|";
+									block = this.head;
+							
+									prefix = "";
+									suffix = "</span> |";
+									if (block != null) {
+										if (block.available) {prefix = "<span style='color: #01DF01;'> "} else {prefix = "<span style='color: #FF0000;'> "};
+										string += (prefix + block.size + suffix);
+									};
+							
+									string += "]"
+									return string;
+								};
+							
+								this.repaint = function() {
+									j=0;
+									block = this.head;
+									memoryDiv.innerHTML = "";
+									fileDiv.innerHTML="";
+									divfile = document.createElement("div");
+														//divfile.className="available";
+														divfile.setAttribute("id","SA");
+														//divfile.style.border = "solid 2px #333";
+														fileDiv.appendChild(divfile);
+									if (block != null) {
+							
+										height = ((block.size/heap.size)*100);
+										if (block.fromPartition) {
+											height += (memControlBlockSize/heap.size)*100;
+										};
+							
+										// Create div block element
+										divBlock = document.createElement("div");
+										divBlock.style.height = (height + "%");
+										divBlock.setAttribute("id", "block"+j);
+										if (block.available) {divBlock.className = "available"} else {divBlock.className = "unavailable"};
+										
+									
+							  // action goes here!!
+							
+										memoryDiv.appendChild(divBlock);			
+										j++;
+										// Add size label
+										// TODO: Show process details on mouse over
+										if(height>12)
+										{
+												blockLabel = document.createElement("div");
+												blockLabel.setAttribute("id", "blockLabel");
+												blockLabel.style.height = (height + "%");
+												blockLabel.style.marginTop=(height/2+"px");
+												
+												blockLabel.innerHTML = "Partition "+block.size + "K";
+												
+												if (height <= 2) {
+													blockLabel.style.display = "none";
+												};
+												divBlock.appendChild(blockLabel);
+										}			
+									}
+								};
+							
+								this.repaintFile = function()
+								{
+									cpt = 0;
+									divfile.innerHTML = "";
+									
+									console.log(file);
+										while (cpt < file.length) {
+											heightFile = 10;
+											divMaillon = document.createElement("div");
+											divMaillon.setAttribute("id", "file"+cpt);
+											divMaillon.setAttribute("class", "fifo");
+											divMaillon.innerHTML="ID="+file[cpt].id;
+											divfile.appendChild(divMaillon);
+											if(cpt!=file.length-1){
+												ligneMaillon = document.createElement("div");
+												ligneMaillon.setAttribute("class","ligne");
+												divfile.appendChild(ligneMaillon);
+											}
+											
+											console.log(cpt);
+											cpt++;
+										}
+										
+								};
+							};
+							
+							// Handle front-end process submission
+							document.getElementById("processForm").onsubmit = function () {
+								elements = this.elements; // Form elements
+							
+								inProcessSize = elements.namedItem("processSize");
+								inProcessTime = elements.namedItem("processTime");
+							
+								process = new Process(parseInt(inProcessSize.value), parseInt(inProcessTime.value));
+							
+							/*	heap.requestAllocation(process);
+								heap.repaint();*/
+								processes.push(process);
+								addProcessToTable(process);
+							
+								// Debug log
+								log("Requesting: " + process.size);
+								log(heap.toString() + "<br>");
+							
+								// Clear form
+								inProcessSize.value = "";
+								inProcessTime.value = "";
+							
+								return false;
+							};
+							
+							function log(string) {
+								logBox.innerHTML += (string + "<br />");
+							}
+							
+							function addProcessToTable(process) {
+								row = document.createElement("tr");
+								row.setAttribute("id", "process" + process.id);
+							
+								colName = document.createElement("td");
+								colName.innerHTML = process.id;
+							
+								colSize = document.createElement("td");
+								colSize.innerHTML = process.size;
+							
+								colTime = document.createElement("td");
+								colTime.setAttribute("id", "process" + process.id + "timeLeft");
+								colTime.innerHTML = process.timeLeft;
+							
+								row.appendChild(colName);
+								row.appendChild(colSize);
+								row.appendChild(colTime);
+							
+								processTable.appendChild(row);
+							};
+							
+							function removeProcessFromTable(process) {
+								processTable.removeChild(document.getElementById("process" + process.id));
+							};
+							
+							// TODO: Update 'time left' for each row in table 
+							function refreshTable() {
+								
+								
+								for (i=0; i<processes.length; i++) {
+									process = processes[i];
+									document.getElementById("process" + process.id + "timeLeft").innerHTML = process.timeLeft;
+								};
+								
+							};
+							
+							var logBox = document.getElementById("logBox");
+							var memoryDiv = document.getElementById("memory");
+							var processTable = document.getElementById("processTable");
+							var fileDiv=document.getElementById("file");
+							console.log(fileDiv);
+							var memControlBlockSize = 16;
+							var processID = 0;
+							var processes = [];
+							var file = [];
+							var clicked = false;
+							var j=0;
+							
+							heap = new Heap();
+							blockSizes = [1024];
+							
+							for (i=0; i<blockSizes.length; i++) {
+								heap.add(new MemControlBlock(blockSizes[i]));
+							};
+							
+							// Draw initial heap
+							if (!clicked) {
+								heap.repaint();	
+							} else {
+								heap.repaintFile();
+							}
+							
+							
+							// Start clock
+							// Loop through all processes and allocate those that require allocation. Deallocate those that have <0 time remaining
+							var clock = setInterval(function() {
+								file = [];	
+								for (i=0; i<processes.length; i++) {
+									process = processes[i];
+									
+									if (!process.isAllocated()) {
+										file.push(process);			
+									} else {
+										process.tick();
+										if (process.timeLeft < 1) {
+											// Deallocate process from heap
+											
+											heap.deallocateProcess(process);
+							
+											// Remove process from processes array
+											index = processes.indexOf(process);
+											if (index > -1) {
+												processes.splice(index, 1);i--;
+											};
+							
+											// Remove process from table
+											removeProcessFromTable(process);
+										};
+									};
+								};
+							
+								if(file[0]!=null && heap.compare(file[0]) == true)
+								{
+									process=file.shift();
+								}
+								refreshTable();
+								heap.repaint();
+								if(clicked) {
+									$("#SA").empty();
+									heap.repaintFile();
+								} 
+							}, 500);
+						</code></pre>
+				</div>
+			</div>
+
+			<br><br>
+
+			<div class="container" id="sim">
+				<h2 class="sub_title">Simulation</h2>
+			</div>
+			</div>
+	<!----------------------------------- /End Discription -------------------------------->
+			<div class="container" id="mainContainer" >
+				<div class="row">
+					<div  id="leftContainer" class="col-12 col-lg-6 col-sm-12">
+						<h2>Ajouter un processus</h2>
+						<form id="processForm">
+							<div class="input-group">
+								<input class="form-control" type="number" min="0" max="1024" name="processSize" placeholder="Taille du processus" autocomplete="off" />
+							</div>
+							<div class="input-group">
+								<input class="form-control" type="number" min="0" name="processTime" placeholder="Duree du processus" autocomplete="off" />
+								<button type="submit" style="display:none;"/>
+							</div>
+							
+							<br><br>
+
+							<h2>Table de processus </h2>
+							<table class="table" id="processTable">
+								<tr>
+									<th> ID</th>
+									<th>Taille (K)</th>
+									<th>Temps restant (unité)</th>
+								</tr>
+							</table>
+
+							<br><br>
+
+							<div id="logBoxContainer">
+								<div id="logBox">DEBUG LOG<br></div>
+							</div>
+					</div>
+
+					<div  id="rightContainer" class="col-12 col-lg-6 col-sm-12">
+						<div id="fileContainer" class="col-lg-3 col-sm-6 col-6">
+								<div id="file"></div>
+						</div>
+						<div id="memoryContainer" class="col-lg-3 col-sm-6 col-6">
+							<div id="memory"></div>
+							<script src="script_test_mono.js"></script>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="button-class" class="col-12 col-lg-6 col-sm-12">
+				<button onclick="
+				if(!clicked){
+
+						clicked=true;
+						$('#fileContainer').css('overflow-y', 'scroll');
+						$('#fileContainer').css('overflow-x', 'hidden');
+					}else {
+						clicked=false;
+						$('#fileContainer').css('overflow', 'visible');
+
+					}	" type="button" class="btn btn-dark">La File</button>
+			</div>
+				<!-- Footer -->
+				<footer class="page-footer font-small">
+  				<!-- Copyright -->
+  				<div class="footer-copyright text-center py-3">© 2019 Copyright:
+    				<a href=""> MMSim.com</a>
+  				</div>
+  				<!-- Copyright -->
+				</footer>
+				<!-- Footer -->
+
+
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+			</body>
+	</html>

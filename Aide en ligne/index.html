@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Aide en ligne</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-very-dark-grey w3-card" id="myNavbar">
+    <a href="../Accueil/index.html" class="w3-bar-item w3-button"><i class="fa fa-microchip" aria-hidden="true" style="color: #FFFFFF;"></i> <b style="color: #FFFFFF">MMSim</b></a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-medium w3-hide-small">
+      <a href="#mono" class="w3-bar-item w3-button"><i class="fa fa-briefcase" style="color: #FFFFFF"></i> <b style="color: #FFFFFF">Monoprogrammation</b></a>
+      <a href="#multi" class="w3-bar-item w3-button"><i class="fa fa-code" style="color: #FFFFFF"></i> <b style="color: #FFFFFF">Multiprogrammation</b></a>
+      <a href="#page" class="w3-bar-item w3-button"><i class="fa fa-file" style="color: #FFFFFF"></i> <b style="color: #FFFFFF">Pagination</b></a>
+      <a href="#adresse" class="w3-bar-item w3-button"><i class="fa fa-exchange" style="color: #FFFFFF"></i> <b style="color: #FFFFFF">Traduction d'adresse</b></a>
+    </div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-large" onclick="w3_open()">
+      <i class="fa fa-bars" style="color: #FFFFFF"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-very-dark-grey w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-xxlarge w3-padding-16">&times;</a>
+  <a href="#mono" onclick="w3_close()" class="w3-bar-item w3-button">Monoprogrammation</a>
+  <a href="#multi" onclick="w3_close()" class="w3-bar-item w3-button">Multiprogrammation</a>
+  <a href="#page" onclick="w3_close()" class="w3-bar-item w3-button">Pagination</a>
+  <a href="#adresse" onclick="w3_close()" class="w3-bar-item w3-button">Traduction d'adresse</a>
+</nav>
+
+<!-- Header -->
+<header class="bgimg-1 w3-container w3-center" style="padding:128px 16px" id="home"></header>
+
+<!-- First Section -->
+<div class="w3-row-padding w3-light-grey w3-padding-32 w3-container" id="mono">
+	<h1 class="w3-center">Monoprogrammation</h1>
+	<hr class="w3-round-large w3-text-grey" style="width:95px; border:3px solid; margin:auto;">
+	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>Cet espace est didié à l'ajout d'une nouvelle demande d'allocation d'un espace mémoire pour un processus donné par l'utilisateur.
+        Ce processus est définie par : un 'id' et une durée de résidence en mémoire centrale.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif8.gif" class="responsive-image">
+    	</div>
+  	</div>
+</div>
+
+<!-- Second Section -->
+<div class="w3-row-padding w3-white w3-padding-32 w3-container" id="multi">
+	<h1 class="w3-center">Multiprogrammation</h1>
+	<hr class="w3-round-large w3-text-grey" style="width:95px; border:3px solid; margin:auto;">
+	</br></br>
+	<div class="w3-container">
+		<h5>Dans les parties partition fixe et variable la demande d'allocation de la mémoire centrale par l'utilisateur se fait de la même manière que celle définie précedemment (Partie Monoprogrammation).</h5>
+	</div>
+  	</br>
+  	<div class="w3-container">
+		<h5>Dans la méthode partition variable de la mémoire centrale en utilisant des files d'attentes, notre application permet à l'utilisateur d'afficher la file d'attente des processus ou la faire disparaitre, ceci avec un simple clic :</h5>
+	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>Sur un bloc mémoire de taille donnée s'il s'agit de la méthode qui utilise une file pour chaque bloc mémoire.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif9.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>Ou bien sur le bouton "File" s'il s'agit de la méthode qui utilise une seule file.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif10.gif" class="responsive-image">
+    	</div>
+  	</div>
+</div>
+
+<!-- Third Section -->
+<div class="w3-row-padding w3-light-grey w3-padding-32 w3-container" id="page">
+	<h1 class="w3-center">Pagination</h1>
+	<hr class="w3-round-large w3-text-grey" style="width:95px; border:3px solid; margin:auto;">
+	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>C'est un espace réservé aux algorithmes, il donne notamment à l’utilisateur l’opportunité de lire l’algorithme de la méthode choisi, avec la possibilité d’afficher ou cacher cet espace avec un simple clic sur le bouton juste au-dessus (On trouve la même fonctionnalité dans la partie traduction d'adresse).</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif1.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>Cet espace est dédier à l’ajout d’un nouveau processus dans la mémoire secondaire, le nom du processus est entré dans le champ «Process id» et le nombre de pages est entré dans le champ «Nombre de Pages», et ça après avoir sélectionner une des 5 méthodes de remplacement disponibles dans notre application, puis appuyer sur la touche "Entrée".</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif2.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>En cliquant sur un processus parmi ceux de la mémoire secondaire, il apparait son tableau de pages.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif3.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>En cliquant sur le bouton «Bit modif» d'une page quelconque, on pourra ainsi modifier son bit de modification.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif4.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>En cliquant sur une page quelconque, on peut visualiser le déroulement des différentes étapes et instructions de l’algorithme de remplacement choisi.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif5.gif" class="responsive-image">
+    	</div>
+  	</div>
+</div>
+
+<!-- Fourth Section -->
+<div class="w3-row-padding w3-white w3-padding-32 w3-container" id="adresse">
+	<h1 class="w3-center">Traduction d'adresse</h1>
+	<hr class="w3-round-large w3-text-grey" style="width:95px; border:3px solid; margin:auto;">
+	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>Cet espace est réservé pour entrer l'adresse virtuelle représentée en hexa (16 bits).</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif6.gif" class="responsive-image">
+    	</div>
+  	</div>
+  	</br></br>
+  	<div class="w3-container">
+	    <div class="w3-twothird">
+	      <h5>En cliquant sur la fleche vous passerez à l'étape suivante de la traduction.</h5>
+    	</div>
+    	<div class="w3-third w3-center">
+      		<img src="gif7.gif" class="responsive-image">
+    	</div>
+  	</div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-very-dark-grey w3-padding-32" style="color: #707070">
+  <a href="#home" class="w3-button w3-light-grey" style="border-radius: 8%;">
+    <i class="fa fa-arrow-up w3-margin-right" style="color: #707070"></i><span style="color: #707070">Acceuil</span>
+  </a>
+  <div class="w3-xxlarge" style="margin-top: 10px;">
+    <a href="https://www.facebook.com" class="btn-footer"><i class="fa fa-facebook-official"></i></a>
+    <a href="https://www.instagram.com" class="btn-footer"><i class="fa fa-instagram"></i></a>
+    <a href="https://www.linkedin.com" class="btn-footer"><i class="fa fa-linkedin"></i></a>
+    <a href="https://www.google.com" class="btn-footer"><i class="fa fa-google-plus"></i></a>
+  </div>
+  <p>© MMSim 2019 | Simulateur des techniques de la gestion de la mémoire centrale | projet 2CP équipe 31.</p>
+</footer>
+
+<script>
+var mySidebar = document.getElementById("mySidebar");
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Partition_Fixe_N_Files</title>
+
+
+			<link href='style_test_N.css' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+				<div class="container">
+						<button class="navbar-toggler"
+						 id="nav-toggle-button"
+						  type="button"
+							 data-toggle="collapse"
+							  data-target="#navbarTogglerDemo03"
+								aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+  				<a class="navbar-brand" href="../Accueil/index.html"><i class="fas fa-memory"></i> MMSim</a>
+
+  				<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    				<ul class="navbar-nav ml-auto mt-4 mt-lg-0">
+      					<li class="nav-item active">
+        					<a class="nav-link" href="../Accueil/index.html">Accueil <span class="sr-only">(current)</span></a></li>
+      					<li class="nav-item active">
+        					<a class="nav-link" href="#explore">Concept </a></li>
+      					<li class="nav-item active">
+        					<a class="nav-link" href="#algo">Algorithme </a></li>
+						<li class="nav-item active">
+        					<a class="nav-link" href="#sim">Simulation </a></li>
+    				</ul>
+  				</div>
+				</div>
+			</nav>
+<br><br><br><br>
+		<div class="container" id="explore">
+				<h1 id="title">Partition fixe, quel concept !</h1>
+				<h1>Ordonnancement par file pour toute la mémoire</h1>
+			</div>
+
+			<div id="description_container">
+				<div class="container">
+					<h4 class="sub_title">Partition par file séparées pour toute la mémoire, de quoi s'agit-il ?</h4>
+					<p>C'est la technique la plus ancienne utilisée pour mettre plusieurs processus en mémoire centrale. Dans cette méthode la mémoire est divisée en n partitions de tailles fixes (égales ou pas) Comme il s'agit d'une allocation contiguë, aucune répartition n'est autorisée. Ici, les partitions sont créées avant l'exécution ou pendant la configuration du système. Le système d'exploitation maintient une table de description des partitions qui indique l’adresse la taille et l’état de chaque partition.
+						À l’arrive d’un processus il est mis dans la file de la plus petite partition assez larges pour le contenir. L’inconvénient de cette technique est que la file pour une grande partition est vide tandis que celle pour une petite partition est pleine.
+					</p>
+				</div>
+			</div>
+
+			<div class="container" id="algo">
+				<h2 class="sub_title">Algorithme</h2>
+			</div>
+
+			<div class="container">
+				<div class="code-editor">
+			<span class="control"></span>
+			<span class="control"></span>
+			<span class="control"></span>
+			<pre class="line-numbers">
+				<code class="language-css">
+					function Process(size, time) {
+						this.size = size;
+						this.timeLeft = time;
+						this.allocatedBlock = null;
+						this.id = processID;
+						this.pushed=false;
+					
+						processID += 1;
+					
+						this.isAllocated = function() {
+							return this.allocatedBlock != null;
+						};
+					
+						this.tick = function() {
+							this.timeLeft -=1;
+						};
+					};
+					
+					function MemControlBlock(size) {
+						this.size = size;
+						this.process = null;
+						this.available = true;
+						this.next = null;
+						this.prev = null;
+						this.tete = [];
+						this.fromPartition = false; // Used to determine whether height of a MemControlBlock needs to be added
+					
+						this.setProcess = function(process) {
+							if (process == null) {
+								this.process = null;
+								this.available = true;
+							} else {
+								this.process = process;
+								this.available = false;
+							};
+						};
+					};
+					
+					// Simulates memory
+					function Heap() {
+						this.head = null;
+						this.size = 0;
+					
+						this.compare = function(process) {
+							
+							blockBestFit = this.head;
+							
+					
+							// Make sure our initial best block is valid
+							while ((blockBestFit.size < process.size) || (!blockBestFit.available)) {
+								blockBestFit = blockBestFit.next;
+								if (blockBestFit == null) {return false}; // Means we couldn't even find an initial valid block
+							};
+							block = blockBestFit.next;
+							while (block != null) {
+								//log("Testing block: " + block.size);
+								if ((block.size >= process.size) && (block.size < blockBestFit.size) && (blockBestFit.available)) {
+									blockBestFit = block;
+									//log("New best block: " + blockBestFit.size);
+								};
+								block = block.next;
+							};
+					
+							blockBestFit.setProcess(process);
+							process.allocatedBlock = blockBestFit;
+							return true;
+						}
+					
+						this.recherche = function(process) {
+							blockBestFit = this.head;
+							
+							// Make sure our initial best block is valid
+							while ((blockBestFit.size < process.size)) {
+								blockBestFit = blockBestFit.next;
+								if (blockBestFit == null) {return false}; // Means we couldn't even find an initial valid block
+							};
+							block = blockBestFit.next;
+							while (block != null) {
+								//log("Testing block: " + block.size);
+								if ((block.size >= process.size) && (block.size < blockBestFit.size)) {
+									blockBestFit = block;
+									//log("New best block: " + blockBestFit.size);
+								};
+								block = block.next;
+							};
+					
+							blockBestFit.tete.push(process);
+							process.pushed=true;
+					
+							//console.log(blockBestFit.tete[0]);
+						}
+					
+						this.rrr=function(){
+					
+						block = this.head;
+						
+						while (block != null) {
+							//console.log(block);
+							//console.log(block.tete);
+					
+							if (block.tete[0] != null) {
+								file = block.tete;
+								if (block.available) {
+										process = file.shift();
+										block.setProcess(process);
+									process.allocatedBlock = block;
+									}
+								
+								//heap.compare(process);
+						}
+						block = block.next;	
+						}
+					}
+					
+						// Allocate process to memory.
+						// Use best-fit method: from the list of holes, choose the smallest hole
+						/*this.requestAllocation = function(process) {
+							blockBestFit = this.head;
+					
+							// Make sure our initial best block is valid
+							while ((blockBestFit.size < process.size) || (!blockBestFit.available)) {
+								blockBestFit = blockBestFit.next;
+								if (blockBestFit == null) {return false}; // Means we couldn't even find an initial valid block
+							};
+							//log("Initial best block: " + blockBestFit.size);
+					
+							// See if there's an even better block
+							block = blockBestFit.next;
+							while (block != null) {
+								//log("Testing block: " + block.size);
+								if ((block.size >= process.size) && (block.available) && (block.size < blockBestFit.size)) {
+									blockBestFit = block;
+									//log("New best block: " + blockBestFit.size);
+								};
+								block = block.next;
+							};
+					
+							spaceLeftover = blockBestFit.size - (process.size + memControlBlockSize); // Space leftover if block was divided
+					
+							// Partition block if needed
+							if (spaceLeftover > 0) {
+								newBlock = new MemControlBlock(spaceLeftover);
+					
+								nextBlock = blockBestFit.next;
+								if (nextBlock != null) {
+									nextBlock.prev = newBlock;
+									newBlock.next = nextBlock;
+								};
+					
+								blockBestFit.next = newBlock;
+								newBlock.prev = blockBestFit;
+					
+								blockBestFit.size = process.size;
+					
+								newBlock.fromPartition = true;
+							};
+					
+							blockBestFit.setProcess(process);
+							process.allocatedBlock = blockBestFit;
+							return true;
+						};*/
+					
+						this.deallocateProcess = function(process) {
+							process.allocatedBlock.setProcess(null);
+							process.allocatedBlock = null;
+						};
+					
+						this.add = function(block) {
+							if (this.head == null) {
+								this.head = block;
+							} else {
+								block.next = this.head;
+								this.head.prev = block;
+								this.head = block;
+							};
+					
+							this.size += block.size;
+						}
+					
+						this.toString = function() {
+							string = "[|";
+							block = this.head;
+					
+							prefix = "";
+							suffix = "</span> |";
+							while (block != null) {
+								if (block.available) {prefix = "<span style='color: #01DF01;'> "} else {prefix = "<span style='color: #FF0000;'> "};
+								string += (prefix + block.size + suffix);
+								block = block.next;
+							};
+					
+							string += "]"
+							return string;
+						};
+					
+						this.repaint = function() {
+							block = this.head;
+							memoryDiv.innerHTML = "";
+							fileDiv.innerHTML="";
+							j = 0;
+					
+							while (block != null) {
+								height = ((block.size/heap.size)*100);
+								if (block.fromPartition) {
+									height += (memControlBlockSize/heap.size)*100;
+								};
+					
+								// Create div block element
+								divBlock = document.createElement("div");
+								divBlock.style.height = (height + "%");
+								divBlock.setAttribute("id", "block"+j);
+								if (block.available) {divBlock.className = "available"} else {divBlock.className = "unavailable"};
+								
+								divBlock.addEventListener("click",function(){
+									//alert(j);
+									//
+									if(!clicked){
+											var k='0',n=0;
+											while(k!=j.toString()){
+											$("#block"+k).addClass("hided");clicked=true;
+											//console.log($(this).attr('id'));
+											if ($(this).attr('id') === "block"+k) {
+												clickedBlock = k;
+												console.log(clickedBlock);
+											}
+											n=parseInt(k)+1;
+											k=n.toString();
+										};
+										$(this).removeClass("hided");
+										$(this).addClass("clicked");
+										divfile = document.createElement("div");
+										//divfile.className="available";
+										divfile.setAttribute("id","SA");
+										fileDiv.appendChild(divfile);		
+					
+									}else {		
+										 k='0';n=0;
+											while(k!=4){
+											$("#block"+k).removeClass("hided");clicked=false;
+											n=parseInt(k)+1;
+											k=n.toString();
+										};
+									$(this).removeClass("clicked");
+					
+									}
+								});
+					
+					
+								memoryDiv.appendChild(divBlock);
+								j++;
+								// Add size label
+								// TODO: Show process details on mouse over
+							if(height>12){
+								blockLabel = document.createElement("div");
+								blockLabel.setAttribute("id", "blockLabel");
+								blockLabel.style.height = (height + "%");
+								blockLabel.style.margin = (height/2 + "px") ;
+								blockLabel.innerHTML = block.size + "K";
+								if (height <= 2) {
+									blockLabel.style.display = "none";
+								};
+								divBlock.appendChild(blockLabel);
+							};
+								block = block.next;
+					
+							
+							};
+						};
+					
+						this.repaintFile = function() {
+							cpt = 0;
+							divfile.innerHTML = "";
+							
+							block = this.head;
+							while (block != null && cpt < clickedBlock) {
+								cpt++;
+								block = block.next;
+							};
+					
+							console.log(cpt);
+							console.log(block);
+							file = block.tete;
+							
+							divBlockName=document.createElement("div");
+							divBlockName.innerHTML="File du Block N�"+(cpt+1);
+							divBlockName.setAttribute("id", "BlockName");
+							divfile.appendChild(divBlockName);
+							
+							cpt = 0;
+							while (cpt < file.length) {
+								heightFile = 10;
+								divMaillon = document.createElement("div");
+								//divMaillon.style.height = (heightFile + "%");
+								divMaillon.setAttribute("id", "file"+cpt);
+								divMaillon.setAttribute("class", "fifo");
+								divMaillon.innerHTML="ID="+file[cpt].id;
+								divfile.appendChild(divMaillon);
+								if(cpt!=file.length-1){
+										ligneMaillon = document.createElement("div");
+										ligneMaillon.setAttribute("class","ligne");
+										divfile.appendChild(ligneMaillon);
+									}
+								console.log(cpt);
+								cpt++;
+							};
+						};
+					};
+					
+					// Handle front-end process submission
+					document.getElementById("processForm").onsubmit = function () {
+						elements = this.elements; // Form elements
+					
+						inProcessSize = elements.namedItem("processSize");
+						inProcessTime = elements.namedItem("processTime");
+					
+						process = new Process(parseInt(inProcessSize.value), parseInt(inProcessTime.value));
+					
+					/*	heap.requestAllocation(process);
+						heap.repaint();*/
+						processes.push(process);
+						addProcessToTable(process);
+					
+					
+						// Debug log
+						log("Requesting: " + process.size);
+						log(heap.toString() + "<br>");
+					
+						// Clear form
+						inProcessSize.value = "";
+						inProcessTime.value = "";
+					
+						return false;
+					};
+					
+					function log(string) {
+						logBox.innerHTML += (string + "<br />");
+					}
+					
+					function addProcessToTable(process) {
+						row = document.createElement("tr");
+						row.setAttribute("id", "process" + process.id);
+					
+						colName = document.createElement("td");
+						colName.innerHTML = process.id;
+					
+						colSize = document.createElement("td");
+						colSize.innerHTML = process.size;
+					
+						colTime = document.createElement("td");
+						colTime.setAttribute("id", "process" + process.id + "timeLeft");
+						colTime.innerHTML = process.timeLeft;
+					
+						row.appendChild(colName);
+						row.appendChild(colSize);
+						row.appendChild(colTime);
+					
+						processTable.appendChild(row);
+					};
+					
+					function removeProcessFromTable(process) {
+						processTable.removeChild(document.getElementById("process" + process.id));
+					};
+					
+					// TODO: Update 'time left' for each row in table 
+					function refreshTable() {
+						for (i=0; i<processes.length; i++) {
+							process = processes[i];
+							document.getElementById("process" + process.id + "timeLeft").innerHTML = process.timeLeft;
+						};
+					};
+					
+					var logBox = document.getElementById("logBox");
+					var memoryDiv = document.getElementById("memory");
+					var processTable = document.getElementById("processTable");
+					var fileDiv=document.getElementById("file");
+					var memControlBlockSize = 16;
+					var processID = 0;
+					var processes = [];
+					var file=[];
+					var clicked = false;
+					var clickedBlock = 0;
+					var fileclicked;
+					var j=0;
+					
+					
+					heap = new Heap();
+					blockSizes = [256,25,100,200];
+					
+					for (i=0; i<blockSizes.length; i++) {
+						heap.add(new MemControlBlock(blockSizes[i]));
+					};
+					
+					// Draw initial heap
+					heap.repaint();
+					
+					// Start clock
+					// Loop through all processes and allocate those that require allocation. Deallocate those that have <0 time remaining
+					var clock = setInterval(function() {
+						for (i=0; i<processes.length; i++) {
+							process = processes[i];
+							//alert("yooooooooooooooooooooooooooo");
+							if (!process.isAllocated()) {
+								//Recherche best fit
+								if(!process.pushed){
+								heap.recherche(process);}
+								//file.push(process);
+								//
+								//heap.requestAllocation(process);
+							} else {
+								process.tick();
+								if (process.timeLeft < 1) {
+									// Deallocate process from heap
+									heap.deallocateProcess(process);
+					
+									// Remove process from processes array
+									index = processes.indexOf(process);
+									if (index > -1) {
+										processes.splice(index, 1);
+									};
+					
+									// Remove process from table
+									removeProcessFromTable(process);
+								};
+							};
+						};
+						//Defiler 
+						heap.rrr();
+						
+						
+						refreshTable();
+						if (!clicked) {
+							heap.repaint(); //alert(file[0]);	
+						} else {
+							heap.repaintFile();
+						}
+					}, 500);
+					
+				</code></pre>
+</div>
+			</div>
+
+			<br><br>
+
+			<div class="container" id="sim">
+				<h2 class="sub_title">Simulation</h2>
+			</div>
+			</div>
+	<!----------------------------------- /End Discription -------------------------------->
+	<div class="container" id="mainContainer" >
+		<div class="row">
+			<div  id="leftContainer" class="col-12 col-lg-6 col-sm-12">
+				<h2>Ajouter un processus</h2>
+				<form id="processForm">
+					<div class="input-group">
+						<input class="form-control" type="number" min="0" max="256" name="processSize" placeholder="Taille du processus" autocomplete="off" />
+					</div>
+					<div class="input-group">
+						<input class="form-control" type="number" min="0" max="256" name="processTime" placeholder="Duree du processus" autocomplete="off" />
+						<button type="submit" style="display:none;"/>
+					</div>
+				</form>
+
+					<br><br>
+
+					<h2>Table de processus </h2>
+					<table class="table" id="processTable">
+						<tr>
+							<th> ID</th>
+							<th>Taille (K)</th>
+							<th>Temps restant (unité)</th>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<div id="logBoxContainer">
+						<div id="logBox">DEBUG LOG<br></div>
+					</div>
+			</div>
+
+			<div  id="rightContainer" class="col-12 col-lg-6 col-sm-12">
+				<div id="fileContainer" class="col-lg-3 col-sm-6 col-6">
+						<div id="file"></div>
+				</div>
+				<div id="memoryContainer" class="col-lg-3 col-sm-6 col-6">
+					<div id="memory"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="page-footer font-small">
+	<!-- Copyright -->
+	  	<div class="footer-copyright text-center py-3">© 2019 Copyright:
+	  		<a href=""> MMSim.com</a>
+	 		</div>
+	 <!-- Copyright -->
+		</footer>
+		<!-- Footer -->
+
+
+<script src="script_N.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>

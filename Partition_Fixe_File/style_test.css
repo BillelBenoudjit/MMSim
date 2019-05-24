@@ -1,0 +1,627 @@
+/* https://flatuicolors.com */
+body {
+	background: #e16a3f;
+}
+
+.code-editor:before,
+.code-editor:after,
+.code-editor span.control:before,
+.code-editor span.after:after {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	content: '';
+	position: absolute;
+	z-index: 1;
+	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: wall .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.code-editor {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	margin: 40px auto 0 auto;
+   	width: 750px;
+   	text-align: left;
+   	background-color: #473431;
+   	border-radius: 0 0 5px 5px;
+   	overflow: auto;
+   	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: wall .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.code-editor:before {
+	content: 'Code Editor';
+	font-family: 'Consolas';
+	color: #222;
+	padding-top: 6px;
+	text-align: center;
+	top: 25px;
+	width: 750px;
+	height: 30px;
+	background-color: #fafafa;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-o-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+}
+
+.code-editor span.control:before {
+	content: '';
+	top: 34px;
+	z-index: 2;
+	padding: 6px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+
+.code-editor span.control:nth-child(1):before {
+	margin-left: 15px;
+	background-color: #df6963;
+
+}
+
+.code-editor span.control:nth-child(2):before {
+	margin-left: 35px;
+	background-color: #f5e18a;
+
+}
+
+.code-editor span.control:nth-child(3):before {
+	margin-left: 55px;
+	background-color: #97c38a;
+}
+
+/* -- iPad Screen -- */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+	.code-editor {
+   		width: 500px;
+	}
+
+	.code-editor:before {
+		width: 500px;
+	}
+}
+
+/* -- iPhone Screen -- */
+@media only screen and (max-width: 479px) {
+	.code-editor {
+		width: 300px;
+	}
+
+	.code-editor:before {
+		width: 300px;
+	}
+}
+
+/**
+ * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/chriskempson/tomorrow-theme
+ * @author Rose Pritchard
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #ccc;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0em 0;
+  height: 500px;
+  overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #473431;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  -moz-border-radius: .3em;
+  -o-border-radius: .3em;
+  -webkit-border-radius: .3em;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999;
+}
+
+.token.punctuation {
+  color: #ccc;
+}
+
+
+.token.tag,
+.token.attr-name,
+.token.namespace {
+  color: #e2777a;
+}
+
+.token.function-name {
+  color: #6196cc;
+}
+
+
+.token.boolean,
+.token.number,
+.token.function {
+  color: #f08d49;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  color: #f8c555;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  color: #cc99cd;
+}
+
+.token.string,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  color: #7ec699;
+}
+
+.token.operator,
+.token.entity,
+.token.url
+{
+  color: #67cdcc;
+}
+
+
+.token.important {
+  font-weight: bold;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+	padding-bottom: 1px;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+
+	font-size: 100%;
+	left: -13em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	background-color: #322422;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+.line-numbers-rows > span {
+	pointer-events: none;
+	display: block;
+	counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+	content: counter(linenumber);
+	color: #999;
+	display: block;
+	padding-right: 0.8em;
+	text-align: right;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+html{	width: 100%;
+	height: 100%;}
+body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #FDFFF0;
+	color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+	line-height: 1.4;
+}
+/*Nav bar principale */
+.navbar {
+	background-color: #212529;
+	color: #FFFFFF;
+}
+
+.navbar-brand, .nav-link {
+    color: #FFFFFF;
+}
+
+#nav-toggle-button {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+footer {
+	background-color: #212529;
+	color: #FFFFFF;
+}
+
+.sub_title {
+	color: #707070;
+	font-weight: bold;
+}
+
+/* End  Nav bar principale */
+#title {
+	font-size: 50pt;
+	text-align: left;
+	margin-right: auto;
+	margin-bottom: 20px;
+	color: #707070;
+}
+
+#description_container {
+	background: url(https://www.cse.club/cse_spot/images/home/tour-bg.png);
+	opacity: 1;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	margin: 40px auto;
+}
+#mainContainer {
+	width: 90%;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#leftContainer {
+	float: left;
+	width: 50%;
+
+}
+
+#rightContainer {
+	float: right;
+	width: 45%;
+	border-left: solid #2C3E50 4px;overflow: hidden;
+}
+
+#memoryContainer {
+	float: right;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:50px;
+	height: 80vh;
+	width: 40%;
+
+}
+
+#memory {
+	float: right;
+	width: 185px;
+	height: 100%;
+	border: solid #2C3E50 4px;
+}
+
+#fileContainer {
+float: left;
+height: 100%;
+width: 100%;
+margin-left: 100px;
+}
+
+
+.block {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+
+}
+
+#blockLabel {
+	color: #FFF;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3vw;
+	padding: 5%;
+}
+
+#logBoxContainer {
+	width: 5px;
+	float: left;
+	font-family: Consolas, monospace;
+	height: 20px;
+	overflow: hidden;
+
+	/*box-sizing: border-box;
+	border: 1px solid #000000;*/
+}
+
+#logBox {
+	height: 10px;
+	width: 3px;
+	overflow: auto;
+	padding-right: 20px; /* Hides scrollbar */
+	display: none;
+}
+
+.scrollbar {
+	width:250px;
+	height:500px;
+	line-height:3em;
+	overflow:scroll;
+	padding:5px;
+}
+
+.available {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+	background-color: #2B2E4A;
+}
+
+.available:hover
+{
+	/*cursor: pointer;*/
+}
+
+.unavailable {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+	background-color: #903749;
+}
+
+#processTable {
+	background-color:#182B3A;
+	width: 80%;
+	/*margin: 9%;*/
+	padding: 5px;
+}
+
+#processTable th {
+	color:#fdfff0;
+	text-align: left;
+	padding: 2%;
+	text-align: center;
+}
+
+#processTable td {
+	color: #ffffff;
+	padding: 1%;
+	text-align: center;
+}
+
+input {
+	height: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 2px solid #95A5A6;
+	border-radius: 6px;
+	width: 50%;
+	margin: 10px;
+	margin-left: 50px;
+	margin-top:30px;
+}
+
+#SA {
+	height: 1000px;
+	width: 100px;
+	position: absolute;
+	margin-left: 25px;
+	margin-top: 3%;
+	padding: 2px;
+	/*overflow: scroll;
+	opacity:0;*/
+}
+
+.fifo {
+	background-color: #F3CF7A;
+	height: 5%;
+	width: 50%;
+	opacity: 0.9;
+	text-align: center;
+	font-size: 1.3vw;
+	color: #2C3E50;
+	padding: 2%;
+	padding-top: 5%;
+
+}
+.fifo:hover{
+	opacity:1;
+	border: solid 1px #000;
+	box-shadow:  5px 5px 20px rgba(0,0,0,0.30), 0 5px 5px rgba(0,0,0,0.22);
+
+
+}
+
+.btn {
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ligne{
+	border-top: solid 2px #333;
+	width: 2px;
+	background-color: #333;
+	height: 5%;
+	margin-left: 25%;
+}
+@Keyframes showDiv{
+		0%{opacity: 0;}
+		33%{opacity: 0.5;}
+		66%{opacity: 0.8;}
+		100%{opacity: 1.0;}
+}
+@keyframes Dvblur{
+	0%{opacity: 1.0;
+  /*filter: alpha(opacity=100);*/
+  }
+	33%{opacity: 0.8;
+  /*filter: alpha(opacity=66);*/}
+	66%{opacity: 0.5;
+  /*filter: alpha(opacity=33);*/}
+	100%{opacity: 0;
+  /*filter: alpha(opacity=0);*/}
+}
+
+
+@media screen and (min-width: 601px) {
+
+	#memoryContainer{
+
+  }
+
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+	body{
+			font-size: 9pt;
+	line-height: 1.4;
+	}
+	#memoryContainer,#SA {
+	/*display: none;*/
+	}
+	#memory{
+		width:150px;
+	}
+	#blockLabel{
+		font-size: 10px;
+	}
+	#leftContainer{
+		width: 100%;
+	}
+	#processTable{
+
+		width: 100%;
+	}
+}
+
+
+.icon-bar {
+	margin-top: 6px;
+    background: #fff;
+	display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+.button-class{
+	margin-left: 81%;
+margin-top: -4%;
+margin-bottom: 7%;
+}
+
+
+
+/* The sidebar menu (work not finished)*/
+.sidenav {
+  height: 100%;
+  width: 180px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  opacity: 0;
+}
+
+.navba a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+
+  color: #818181;
+  display: block;
+}
+
+.navba a:hover {
+  color: #f1f1f1;
+}
+#shownav {
+    height: 20px;
+}
+.navba {
+	height: 100%;
+	width: 180px;
+	position: fixed;
+	z-index: 1;
+	border-right: 3px solid #818181;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden; 
+	padding-top: 20px;
+    top: 55px;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.navba.hideme {
+    opacity: 1;
+}
+@media only screen and (max-width: 966px){
+	.button-class{
+		margin-left: 40%;}
+}
