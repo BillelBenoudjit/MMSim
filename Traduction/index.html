@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Traduction d'adresses
+	</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<style type="text/css"> #madiv{overflow:auto;} </style></head>	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<body>
+<!----------------------------------- Menu -------------------------------->
+<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" id="nav-toggle-button" type="button" data-toggle="collapse"
+    data-target="#navbarTogglerDemo03" aria-label="Toggle navigation">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="../Accueil/index.html"><i class="fas fa-memory"></i> MMSim</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav ml-auto mt-4 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="../Accueil/index.html">Accueil <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#concept">Concept </a></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#sim" onclick="myFunction()">Algorithme </a></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#sim">Simulation </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!----------------------------------- /End Menu -------------------------------->
+<div id="concept"></div>
+<br><br><br><br>
+			<div class="container">
+				<h1 id="title">Traduction d'adresses, quel concept !</h1>
+			</div>
+
+			<div id="description_container">
+				<div class="container">
+					<p>Une adresse générée par le processeur est appelée adresse logique. Tandis qu’une adresse vue par l’unité mémoire, c’est à dire celle qui est chargée dans le registre d’adresse de la mémoire, est appelée adresse physique. Il est nécessaire au moment de l’exécution de convertir les adresses logiques en adresses physiques.
+            La traduction des adresses utilise une [table des pages] qui est située en mémoire centrale
+            ou dans des registres, et dans laquelle les entrées successives correspondent aux
+            pages virtuelle consécutives. La p-ième entrée de la table des pages contient le
+            numéro r de la case où est implantée la pase p, et éventuellement des indicateurs
+            supplémentaires. L'adresse réelle (f,d) d'un mot d'adresse virtuelle (p,d) est obtenue en remplaçant
+            le numéro de page p par le numéro de case f trouvé dans la p-ième entrée. c'est ainsi que se déroule la traduction d'adresses.
+          </p>
+				</div>
+			</div>
+
+		
+<div id="sim"></div>
+
+<div id="leftContainer">
+  <h2> Entrez l'adresse virtuelle </h2>
+  
+<input id="CosInput"type="text" class="form__field" placeholder=" Adresse Virtuelle (xxxx)" />
+
+<div class="dropdown" id="dropdownId">
+        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-caret-left" style="font-size: 20px;"></i></button>
+</div>
+
+  <div id="myDropdown" class="space">
+      <div id="madiv" class="sous-space">
+        <div class="sous-sous-space">
+          <i class="fa fa-circle" style="font-size: 13px;color: #df6963;margin-top: 13px;margin-left: 10px;"></i>
+          <i class="fa fa-circle" style="font-size: 13px;color: #f5e18a"></i>
+          <i class="fa fa-circle" style="font-size: 13px;color: #97c38a"></i>
+            Algorithme
+        </div>
+
+            <div class="fifo-algo" style="margin-left: 10px;">
+              <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;color: white">FIFO:</b><br>
+              <b style="color: white">i)</b> Lire une page.<br>
+              <b style="color: white">ii)</b> Si la page est présente dans MC, mettre son bit de référence à 1.<br> 
+              <b style="color: white">iii)</b> Sinon <br>
+              <b style="color: white;margin-left: 10px;">Si</b> la mémoire centrale contient moins de pages que sa capacité<br> 
+              <b style="margin-left: 20px;color: white">a)</b> Insérer la page dans la mémoire centrale.<br>
+              <b style="margin-left: 20px;color: white">b)</b> Maintenir simultanément les pages dans la file d'attente pour construire la FIFO. <br>
+              <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+              <b style="color: white;margin-left: 10px;">Sinon</b><br>  
+              <b style="margin-left: 20px;color: white">a)</b> Supprimer la première page de la file d'attente, car elle a été la première à être entrée dans la mémoire, en la remplaçant par la page actuelle.<br>
+              <b style="margin-left: 20px;color: white">b)</b> Faire ce changement au niveau de la MC.<br> 
+              <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br> 
+            </div>  
+    </div>
+</div>
+</div>
+
+
+
+<div id="rightContainer">
+
+
+     <div class="instructions" >
+          <div class="loader" id="loading"></div>
+         
+
+          <div id="ins"><b></b>Le tableau de page au dessous concerne un systeme avec des adresses de 16 bytes et la taille d'une page est 4Ko  </br></div>
+           <i class="fas fa-arrow-circle-right" id="fa-arrow-circle-right" ></i>
+           <i class="fas fa-exclamation-triangle" id="fa-exclamation-triangle"></i>
+</div>
+
+<div class='resultat1'>
+<span id='adr1'>   Page</span> 
+<div class='resultat2'>
+<span id='adr22'>     Decalage</span>
+<div class='resultat4'>
+<span id='adr'>   Adresse physique</span> 
+
+</div> 
+</div>
+</div>
+
+<div class='resultat5'>
+<span id='adr3'>   Case</span> 
+<div class='resultat6'>
+<span id='adr2'>     Decalage</span>
+
+</div>
+</div>
+
+
+  <div class="arrow1"></div>
+  <div class="arrow2"></div>
+  <div class="arrow3"></div>
+
+
+
+ 
+ 
+<div class="col-10">
+
+    <table id ="cosTable">
+  <thead>
+    <tr><th>Page</th>
+    <th>Case</th>
+ 
+  </tr></thead>
+  <tbody>
+    <tr id='11'>
+      <td>11</td>
+      <td>1</td>
+   
+    </tr>
+    <tr id='4'>
+      <td>4</td>
+      <td>2</td>
+   
+    </tr>
+    <tr id='3'>
+      <td>3</td>
+      <td>3</td>
+   
+    </tr>
+    <tr id='1'>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+        <tr id='8'>
+      <td>8</td>
+      <td>5</td>
+   
+    </tr>
+    <tr id='7'>
+      <td>7</td>
+      <td>6</td>
+   
+    </tr>
+    <tr id='6'>
+      <td>6</td>
+      <td>7</td>
+   
+    </tr>
+    <tr id='5'>
+      <td>5</td>
+      <td>8</td>
+    </tr>
+        <tr id='10'>
+      <td>10</td>
+      <td>9</td>
+   
+    </tr>
+    <tr id='9'>
+      <td>9</td>
+      <td>10</td>
+   
+    </tr>
+    <tr id='12'>
+      <td>12</td>
+      <td>11</td>
+
+    </tr>
+    <tr id='2'>
+      <td>2</td>
+      <td>12</td>
+    </tr>
+ 
+  </tbody>
+</table>
+  
+</div>
+
+</div>
+
+
+
+<br>
+
+<!-- Footer -->
+<footer class="page-footer font-small">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href=""> MMSim.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+
+<script type="text/javascript" src="animation.js"></script>
+</body>
+</html>

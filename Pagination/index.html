@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta charset="UTF-8">
+	<title>Pagination</title>
+
+	<link href='style.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <style type="text/css"> #madiv{overflow:auto;} </style>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+					<div class="container">
+						<button class="navbar-toggler" id="nav-toggle-button" type="button" data-toggle="collapse"
+						data-target="#navbarTogglerDemo03" aria-label="Toggle navigation">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="../Accueil/index.html"><i class="fas fa-memory"></i> MMSim</a>
+
+						<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+							<ul class="navbar-nav ml-auto mt-4 mt-lg-0">
+								<li class="nav-item active">
+									<a class="nav-link" href="../Accueil/index.html">Accueil <span class="sr-only">(current)</span></a></li>
+									<li class="nav-item active">
+										<a class="nav-link" href="#concept">Concept </a></li>
+									<li class="nav-item active">
+										<a class="nav-link" href="#sim" onclick="myFunction()">Algorithme </a></li>
+									<li class="nav-item active">
+										<a class="nav-link" href="#sim">Simulation </a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+				<br><br><br><br>
+				<div class="ctr" id="concept">
+				<div class="container" >
+						<h1 id="title">Pagination, comment ça marche !</h1>
+				</div>
+		
+					<div id="description_container">
+						<div class="container">
+							<p>La pagination consiste à découper l'espace
+								adressable, ou espace virtuel, en zones de taille fixe appelée pages. La mémoire
+								réelle est également découpée en cases (frame en anglais) ayant la taille d'une
+								page de sorte que chaque page peut être implantée dans n'importe quelle case de
+								la mémoire réelle.</p>
+						</div>
+					</div>
+					<div class="container" id="sim">
+					</div>
+				</div>
+			
+<div id="mainContainer">
+
+	<div id="leftContainer" >
+		<h2>Ajouter un Processus</h2>
+		<form id="processForm">
+        	<input type="text" name="processId" placeholder="Process id" autocomplete="off" onkeypress="return tableInputKeyPress(event)" />
+			<input type="text" name="pageNumber" placeholder="Nombre de Pages" autocomplete="off" onkeypress="return tableInputKeyPress(event)" />
+		</form>
+		<div class="custom-select" style="width:150px;height: 45px;" id="customId">
+			<select id="mySelect">
+				<option value="0">Méthode</option>
+				<option value="1">FIFO</option>
+				<option value="2">LRU</option>
+				<option value="3">NRU</option>
+				<option value="4">LFU</option>
+				<option value="5">Aging</option>
+			</select>
+	</div>
+	<div class="dropdown" id="dropdownId">
+		<button onclick="myFunction()" class="dropbtn"><i class="fa fa-caret-left" style="font-size: 20px;"></i></button>
+	</div>
+  		<div id="myDropdown" class="space">
+			<div id="madiv" class="sous-space">
+				<div class="sous-sous-space">
+					<i class="fa fa-circle" style="font-size: 13px;color: #df6963;margin-top: 13px;margin-left: 10px;"></i>
+					<i class="fa fa-circle" style="font-size: 13px;color: #f5e18a"></i>
+					<i class="fa fa-circle" style="font-size: 13px;color: #97c38a"></i>
+				   	Algorithme
+				</div>
+
+		        <div class="fifo-algo" style="margin-left: 10px;">
+		          <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;color: white">FIFO:</b><br>
+		          <b style="color: white">i)</b> Lire une page.<br>
+		          <b style="color: white">ii)</b> Si la page est présente dans MC, mettre son bit de référence à 1.<br>
+		          <b style="color: white">iii)</b> Sinon <br>
+		          <b style="color: white;margin-left: 10px;">Si</b> la mémoire centrale contient moins de pages que sa capacité<br>
+		          <b style="margin-left: 20px;color: white">a)</b> Insérer la page dans la mémoire centrale.<br>
+		          <b style="margin-left: 20px;color: white">b)</b> Maintenir simultanément les pages dans la file d'attente pour construire la FIFO. <br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		          <b style="color: white;margin-left: 10px;">Sinon</b><br>
+		          <b style="margin-left: 20px;color: white">a)</b> Supprimer la première page de la file d'attente, car elle a été la première à être entrée dans la mémoire, en la remplaçant par la page actuelle.<br>
+		          <b style="margin-left: 20px;color: white">b)</b> Faire ce changement au niveau de la MC.<br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		        </div>
+
+		        <div class="lru-algo" style="margin-left: 10px;">
+		          <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;color: white">LRU:</b><br>
+		          <b style="color: white">indexes:</b> est un tableau d'objets, tel qu'un objet est un enregistrement contenant deux champs, un champ "page" et un champ "compteur".<br>
+		          <b style="color: white">i)</b> Lire une page.<br>
+		          <b style="color: white">ii)</b> Si la page est présente dans MC, mettre son bit de référence à 1.<br>
+		          <b style="color: white">iii)</b> Sinon <br>
+				  <b style="color: white;margin-left: 10px;">Si</b> la mémoire centrale contient moins de pages que sa capacité<br>
+		          <b style="margin-left: 20px;color: white">a)</b> Insérer la page dans la mémoire centrale.<br>
+		          <b style="margin-left: 20px;color: white">b)</b> Ajouter au tableau "indexes" cette page et la valeur 1 dans le champ compteur, puis incrémenter toutes les valeurs du champ compteur des autres éléments du tableau "indexes". <br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		          <b style="margin-left: 10px;color: white">Sinon</b> <br>
+		          <b style="margin-left: 20px;color: white">a)</b> Trouvez la page, dans le tableau "indexes", qui était le moins récemment utilisée. Nous la trouvons en cherchant dans ce tableau la valeur la plus grande du champ compteur.<br>
+		          <b style="margin-left: 20px;color: white">b)</b> Remplacez la page trouvée par la page actuelle.<br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		          <b style="margin-left: 20px;color: white">d)</b> Mettre la valeur du compteur de la page en cours à 1, puis incrémenter toutes les valeurs du champ comteur des autres pages.<br>
+		        </div>
+
+		        <div class="nru-algo" style="margin-left: 10px;">
+		          <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;color: white">NRU:</b><br>
+		          <b style="color: white">i)</b> Lire une page.<br>
+		          <b style="color: white">ii)</b> Si la page est présente dans MC, mettre son bit de référence à 1.<br>
+		          <b style="color: white">iii)</b> Sinon <br>
+		          <b style="color: white;margin-left: 10px;">Si</b> la mémoire centrale contient moins de pages que sa capacité<br>
+				  <b style="margin-left: 20px;color: white">a)</b> Insérer la page dans la mémoire centrale.<br>
+		          <b style="margin-left: 20px;color: white">b)</b> Mettre le bit de référence de la page inséré à 1. <br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		          <b style="margin-left: 10px;color: white">Sinon</b> <br>
+		          <b style="margin-left: 20px;color: white">a)</b> Trouvez la page à remplacer en utilisant le bit de référence (R) et le bit de modification (M) et en suivant cette priorité : <br>
+		          chercher s'il y a une page avec R=0 et M=0, sinon chercher le cas R=0 et M=1, sinon le cas R=1 et M=0, sinon le cas R=1 et M=1, et dans le cas d'égalité on utilise le principe FIFO. <br>
+		          <b style="margin-left: 20px;color: white">b)</b> Remplacez la page trouvée par la page actuelle, et mettre son bit de référence à 1.<br>
+		          <b style="margin-left: 20px;color: white">c)</b> Incrémenter défaut de page.<br>
+		          <b style="margin-left: 20px;color: white">d)</b> Remettre à 0 tous les bits de référence après chaque K cycles.<br>
+		        </div>
+
+						<div class="lfu-algo" style="margin-left: 10px;">
+		          <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;">LFU:</b><br>
+		          <b>i)</b> Lire une page.<br>
+		          <b>ii)</b> si la page référencée est présente en MC<br>
+		            <b style="margin-left: 10px;">a)</b> incrémenter le compteur de référence <br>
+		          <b>iii)</b> Sinon <br>
+		            <b style="margin-left: 10px;">Si</b> la MC n'est pas plein<br>
+		            <b style="margin-left: 20px;">a)</b> insérer directement la page <br>
+		            <b style="margin-left: 20px;">b)</b> mettre le compteur de référence de la page inséré à 1 <br>
+		            <b style="margin-left: 10px;">Sinon</b> <br>
+		              <b style="margin-left: 20px;">a)</b> Trouvez la page avec le plus petit compteur de référence pour la remplacer <br>
+		              <b style="margin-left: 20px;">b)</b> mettre le compteur de référence de la page insérer à 1<br>
+		        </div>
+
+						<div class="aging-algo" style="margin-left: 10px;">
+		          <b style="text-decoration: underline;font-size: 20px;margin-left: 140px;">Aging:</b><br>
+		          <b>i)</b> Lire une page.<br>
+		          <b>ii)</b> si la page référencée n'est pas présente en MC <br>
+		            <b style="margin-left: 10px;">Si</b> la MC n'est pas plien<br>
+		            <b style="margin-left: 20px;">a)</b> insérer directement la page<br>
+		            <b style="margin-left: 20px;">b)</b> mettre le compteur de référence de la page insérer à 1 <br>
+		            <b style="margin-left: 10px;">Sinon</b> <br>
+		              <b style="margin-left: 20px;">a)</b> Trouvez la page avec le plus petit compteur de référence pour la remplacer <br>
+		              <b style="margin-left: 20px;">b)</b> mettre le compteur de référence de la page inséré à 1<br>
+		            <b>iii)</b> décaler la valeur binaire du compteur de référence de tous les pages avec leurs bits de référence (décalage à gauche) <br>
+		            <br>
+		        </div>
+
+		    </div>
+		</div>
+	</div>
+	<div id="rightContainer">
+	    <div style="display: flex;">
+	      <div class="instructions" >
+	        <div class="loader" id="loading"></div>
+	        <div id="ins">Instructions</div>
+	      </div>
+	      <div class="defautPage"><div id="def">Defaut de page: 0</div></div>
+	    </div>
+	    <br>
+	    <div class="Main_area">
+				<div class="containerclass">
+	      <div class="MS">
+	        <div class="card">
+	          <div class="card-body">
+	            <canvas id="myChart"></canvas>
+	          </div>
+	        </div>
+	      </div>
+	      <div id="arrayContainer">
+	        <div id="array"></div>
+	        <div id="array1"></div>
+	        <div id="array2"></div>
+	        <div id="array3"></div>
+	        <div id="array4"></div>
+				</div>
+			</div>
+	      <div id="memoryContainer">
+	        <div id="memory"></div>
+	      </div>
+	    </div>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="jquery-3.3.1.js"></script>
+<script src="script.js"></script>
+<!-- Footer -->
+<footer class="page-footer font-small blue page-footer rtv">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="../Accueil/index.html"> MMSim.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+</html>

@@ -1,0 +1,606 @@
+body, html {
+	width: 100%;
+	height: 100%;
+	font-family: Arial, Helvetica, Sans-serif;
+}
+body{
+	display: flex;
+    min-height: 100vh;
+		flex-direction: column;
+		overflow: scroll;
+}
+main {
+	flex: 1;
+}
+.navbar {
+	background-color: #212529;
+	color: #FFFFFF;
+}
+
+.navbar-brand, .nav-link {
+    color: #FFFFFF;
+}
+
+#nav-toggle-button {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.icon-bar {
+	margin-top: 6px;
+    background: #fff;
+	display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+
+#description_container {
+	background: url(https://www.cse.club/cse_spot/images/home/tour-bg.png);
+	opacity: 1;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 35%;
+	margin: 40px auto;
+}
+
+footer {
+	position: relative;
+  bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	background-color: #212529;
+	color: #FFFFFF;
+}
+.loader {
+  display: none;
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: 2px;
+  margin-left: 3px;
+  animation: spin 0.3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #fdfff0;
+	color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+	font-size: 12pt;
+	line-height: 1.4;
+}
+
+h1 {
+	font-size: 40pt;
+	margin: 0;
+	margin-bottom: 20px;
+	line-height: 1;
+}
+
+h2 {
+	color:#707070;
+	margin: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 0%;
+	line-height: 1;
+}
+
+h3 {
+	font-size: 16pt;
+	color: #95A5A6;
+	margin: 0;
+}
+
+#title {
+	font-size: 50pt;
+	text-align: left;
+	margin-right: auto;
+	margin-bottom: 20px;
+	color: #707070;
+}
+
+#mainContainer {
+	display: flex;
+	width: 100%;
+	height: auto;
+	margin-top: auto;
+	margin-bottom: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#leftContainer {
+	float: left;
+	width: 33%;
+	padding-left: 30px;
+}
+
+#rightContainer {
+	float: right;
+	width: 66%;
+	border-left: solid #2C3E50 4px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#memoryContainer {
+	float: right;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:50px;
+	height: 80vh;
+	width: 80vw;
+}
+
+#memory {
+	float: right;
+	width: 12vw;
+	height: 100%;
+	color: #ffffff;
+	border: solid #2C3E50 4px;
+}
+
+.block {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+}
+
+#blockLabel {
+	text-align: center;
+	font-weight: bold;
+	padding: 20px;
+}
+
+#miniBlock {
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 0px;
+}
+@media (min-width: 915px) {
+.containerclass{
+display: flex;
+}
+}
+
+#arrayContainer {
+	display: none;
+	float: right;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:50px;
+	width: 280px;
+}
+
+/*.waw10{height: 67.9vh;} .waw9{height: 63.2vh;} .waw8{height: 56.7vh;} .waw7{height: 51.2vh;} .waw6{height: 45.9vh;}
+.waw5{height: 42.3vh;} .waw4{height: 35vh;} .waw3{height: 29.9vh;} .waw2{height: 25.5vh;} .waw1{height: 22vh;}
+
+.waw100{padding: 18.7px 0px;} .waw99{padding: 18.9px 0px;} .waw88{padding: 19.2px 0px;} .waw77{padding: 19.4px 0px;} .waw66{padding: 19.9px 0px;}
+.waw55{padding: 20.4px 0px;} .waw44{padding: 19px 0 23.8px 0;} .waw33{padding: 18px 0 27.5px 0;} .waw22{padding: 19px 0 33px 0;} .waw11{padding: 19px 0 49px 0;}*/
+
+#array, #array1, #array2, #array3, #array4 {
+	float: left;
+	width: 55px;
+	border: solid #2C3E50 2px;
+}
+
+.blockLabelArray {
+	text-align: center;
+	font-size: 12px;
+	color: white;
+	width: 100%;
+	background-color: #2B2E4A;
+	cursor: default;
+	border-bottom: 1px solid white;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	outline: none;
+}
+
+.blockLabelArrayBtn {
+	text-align: center;
+	font-size: 12px;
+	color: white;
+	width: 100%;
+	background-color: #2B2E4A;
+	cursor: pointer;
+	border-bottom: 1px solid white;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	outline: none;
+}
+
+.blockLabelArrayBtn:hover {
+	background-color: #1b2631;
+}
+
+#logBoxContainer {
+	width: 100%;
+	float: left;
+	font-family: Consolas, monospace;
+	height: 400px;
+	overflow: hidden;
+}
+
+#logBox {
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	padding-right: 20px; /* Hides scrollbar */
+	display: none;
+}
+
+.available {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+	background-color: #2B2E4A;
+	cursor: auto;
+}
+
+.unavailable {
+	box-sizing: border-box;
+	border: 1px solid #2C3E50;
+	width: 100%;
+	background-color: #903749;
+}
+
+#processTable {
+	background-color:#182B3A;
+	width: 400px;
+}
+
+#processTable th {
+	color:#fdfff0;
+	text-align: left;
+	padding-right: 20px;
+}
+
+#processTable td {
+	color: #ffffff;
+}
+
+input {
+	height: 34px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 2px solid #95A5A6;
+	border-radius: 6px;
+	width: 200px;
+	margin: 10px;
+	margin-left: 13%;
+	margin-top: 15px;
+}
+
+.hided{
+	animation-name: Dvblur;
+	animation-duration: 500ms;
+	animation-delay: 0.1s;
+	animation-fill-mode:both;
+}
+@Keyframes showDiv{
+		0%{opacity: 0;}
+		33%{opacity: 0.5;}
+		66%{opacity: 0.8;}
+		100%{opacity: 1.0;}
+}
+@keyframes Dvblur{
+	0%{opacity: 1.0;
+  /*filter: alpha(opacity=100);*/
+  }
+	33%{opacity: 0.8;
+  /*filter: alpha(opacity=66);*/}
+	66%{opacity: 0.5;
+  /*filter: alpha(opacity=33);*/}
+	100%{opacity: 0;
+  /*filter: alpha(opacity=0);*/}
+}
+.clicked{
+	box-shadow: 19px 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+/*************************************************************************************************************************************************/
+/***************************************************************** Mon CSS ***********************************************************************/
+.space
+{
+	display: none;
+	position: relative;
+	margin-top: 0px;
+	margin-left: 0px;
+	width: 100%;
+	height: 260px;
+	border: 1px solid #262626;
+	background: #262626;
+}
+.sous-space
+{
+	position: relative;
+	margin-left: 10px;
+	margin-top: 20px;
+	width: 96%;
+	height: 230px;
+	border: 1px solid white;
+	font-size: 14px;
+	font-family: "Courier New";
+	border-radius: 6px 0px 0px 6px;
+	background: #2B2E4A;
+	color: #C0C3C3;
+}
+.sous-sous-space
+{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	background: #fff;
+	font-size: 15px;
+	color: black;
+}
+#h3-special
+{
+	font-family: sans-serif;
+	margin-left: 25px;
+	font-size: 20px;
+	color: white;
+}
+.dropbtn
+{
+	float: right;
+  background-color: #2C3E50;
+  color: white;
+  border: none;
+	padding: 12px 8px;
+  cursor: pointer;
+  outline: none;
+}
+.dropbtn:hover, .dropbtn:focus
+{
+  background-color: #1b2631;
+}
+
+.dropdown
+{
+	width: 100%;
+  margin-top: 10px;
+  display: inline-block;
+}
+.dropdown-content
+{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.right
+{
+	transform: rotate(180deg);
+}
+.left
+{
+	transform: rotate(360deg);
+}
+.leftTOdown
+{
+	transform: rotate(90deg);
+}
+.up{
+	transform: rotate(90deg);
+
+}
+.down
+{
+	transform: rotate(270deg);
+}
+.show {display: block;}
+/************************************************ Custom Select ***********************************************/
+/*the container must be positioned relative:*/
+.custom-select
+{
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  border: 2px solid #737373;
+  background: white;
+  margin-top: 10px;
+  margin-left: 38%;
+}
+.custom-select select
+{
+  display: none; /*hide original SELECT element:*/
+}
+/*style the arrow inside the select element:*/
+.select-selected:after
+{
+	display: none;
+  position: absolute;
+  content: "";
+  top: 43%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #000 transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after
+{
+  border-color: transparent transparent #000 transparent;
+  top: 22%;
+}
+.select-selected
+{
+  color: #000;
+  padding: 4px 16px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+}
+/*style the items (options), including the selected item:*/
+.select-items div
+{
+  color: #000;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+}
+/*style items (options):*/
+.select-items
+{
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+/*hide the items when the select box is closed:*/
+.select-hide
+{
+  display: none;
+}
+.select-items div:hover, .same-as-selected
+{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/************************************************ Afif CSS ***********************************************/
+.Main_area{
+    height:100%;
+    display: flex;
+}
+#ins{
+	width: 100%;
+}
+.instructions{
+	display: flex;
+	color: #C0C1D8;
+	background-color: #2B2E4A;
+	text-align: center;
+	width: 600px;
+	margin-left: 4.25%; /* 20% */
+	border: 4px solid #212337;
+}
+.defautPage{
+	display: flex;
+	color: #C0C1D8;
+	background-color: #2B2E4A;
+	text-align: center;
+	font-size: 15px;
+	width: 160px;
+	margin-left: 32px;
+	border: 4px solid #212337;
+}
+#def {
+	width: 100%;
+}
+.MS{
+    flex: 1;
+    height: 100px;
+    margin-top: 200px;
+}
+.MC{
+    flex: initial;
+    width: 200px;
+}
+.page {
+    align-self: center;
+    text-align: center;
+    margin-top: 1px;
+    margin-left: 5px;
+    width: 150px;
+    background-color: #2c3e50;
+    height: 12.3%;
+}
+.pageLabel {
+    text-align: center;
+    -webkit-text-fill-color: aliceblue;
+    padding: 25px;
+    height: 10%;
+}
+.card{
+    margin-left: 50px;
+    width: 250px;
+}
+
+/********************************************************responsive*************************************************************************************/
+@media (max-width: 915px) {
+	#array, #array1, #array2, #array3, #array4 {
+		width: 55px;
+	}
+	.custom-select{
+		margin-left: 41.5%;
+	}
+	#mainContainer{
+		display: block;
+	}
+  #rightContainer {
+		width: 100%;
+		height: auto;
+		border-left: solid #2C3E50 0px;
+  }
+
+  #leftContainer {
+		width: 100%;
+		height: 20%;
+		padding-left: 0px;
+		margin-bottom: 50px;
+  }
+	.MS{
+		width: 200px;
+		margin-top: 0px;
+	}
+	#arrayContainer{
+		margin-top: 150px;
+		margin-left: 0px;
+		width: 280px;
+	}
+	.card{
+		width: 200px;
+		margin-left: 0px;
+	}
+	#memoryContainer {
+		float: right;
+		margin-left: none;
+		margin-right: none;
+		width: 800vw;
+	}
+	#memory {
+		float: right;
+		width: 60%;
+		height: 80%;
+		border: solid #2C3E50 4px;
+	}
+	.dropdown
+{
+	margin-top: 10px;
+	margin-bottom: 1px;
+}
+#myDropdown {
+	margin-left: 0px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+#madiv{
+	width: 90%;
+}
+.defautPage{
+	margin-left: 10px;
+}
+}
